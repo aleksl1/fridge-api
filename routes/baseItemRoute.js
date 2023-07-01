@@ -1,5 +1,4 @@
 const express = require('express');
-const BaseItem = require("../models/baseItemModel")
 const {
     getBaseItems,
     getBaseItem,
