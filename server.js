@@ -9,14 +9,15 @@ const app = express();
 const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 3000;
 const FRONTEND = process.env.FRONTEND
-const ADMIN_PANEL = process.env.ADMIN_PANEL
+const OWNER = process.env.OWNER
 
-// const corsOptions = {
-//     origin: [FRONTEND,ADMIN_PANEL] /no slash at the end of url,
-//     optionsSuccessStatus: 200
-// }
-// app.use(cors(corsOptions))
-app.use(cors)
+const corsOptions = {
+    origin: [FRONTEND, OWNER],
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
+
 app.use(express.json())
 
 app.use('/api/baseItems', baseItemRoute)
