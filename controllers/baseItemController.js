@@ -1,4 +1,4 @@
-const BaseItem = require("../models/baseItemModel");
+const {BaseItem} = require("../models/baseItemModel");
 const asyncHandler = require('express-async-handler')
 
 const getBaseItems = asyncHandler(async (req, res) => {

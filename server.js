@@ -2,6 +2,8 @@ require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const baseItemRoute = require('./routes/baseItemRoute')
+const shoppingListItemRoute = require('./routes/shoppingListItemRoute')
+const purchasedItemRoute = require('./routes/purchasedItemRoute')
 const errorMiddleware = require("./middleware/errorMiddleware");
 const cors = require('cors')
 const app = express();
@@ -21,6 +23,8 @@ app.use(cors(corsOptions))
 app.use(express.json())
 
 app.use('/api/baseItems', baseItemRoute)
+app.use('/api/shoppingListItems', shoppingListItemRoute)
+app.use('/api/purchasedItems', purchasedItemRoute)
 
 app.get('/', (req, res) => {
     console.log("Hello node api");

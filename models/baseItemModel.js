@@ -4,7 +4,7 @@ const baseItemSchema = mongoose.Schema(
     {
         name: {
             type: String,
-            required: [true, "enter item name"]
+            required: [true, "Enter item name"],
         },
         proteins: {
             type: Number,
@@ -20,14 +20,19 @@ const baseItemSchema = mongoose.Schema(
         },
         category: {
             type: String,
-            required: [true, "enter item category"]
-        }
+            enum: ["fruits", "vegetables", "meats", "beverages", "dairy", "bread", "pasta", "grains", "others"],
+            required: [true, "Enter item category"],
+        },
+        piecesPer100g: {
+            type: Number,
+            required: true,
+        },
     },
     {
-        timestamps: true
+        timestamps: true,
     }
-)
+);
 
 const BaseItem = mongoose.model("BaseItem", baseItemSchema);
 
-module.exports = BaseItem;
+module.exports = {BaseItem, baseItemSchema};
