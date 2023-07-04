@@ -17,6 +17,9 @@ const corsOptions = {
     origin: [FRONTEND, OWNER],
     optionsSuccessStatus: 200
 }
+const db = require("./models/index");
+const Role = db.role;
+
 
 app.use(cors(corsOptions))
 
@@ -40,7 +43,34 @@ mongoose
             console.log("node api app running on port 3000");
         })
         console.log("connected to mongoDB")
+        initial()
     })
     .catch((err) => {
         console.log(err)
     })
+
+function initial() {
+    Role.estimatedDocumentCount((err, count) => {
+        if (!err && count === 0) {
+            new Role({
+                name: "user"
+            }).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+
+                console.log("added 'user' to roles collection");
+            });
+
+            new Role({
+                name: "admin"
+            }).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+
+                console.log("added 'admin' to roles collection");
+            });
+        }
+    });
+}
